@@ -1,0 +1,328 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Education</title>
+<meta name="keywords" content="free css templates, education, school, college, university" />
+<meta name="description" content="Education template is for academic related websites" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+<script language="javascript">
+
+function regis()
+{
+var r_no_txt=document.getElementById("r_no_id").value;
+var numerical_method_txt=document.getElementById("numerical_method_id").value;
+var ds_using_c_txt=document.getElementById("ds_using_c_id").value;
+var software_engineering_txt=document.getElementById("software_engineering_id").value;
+var rdbms_txt=document.getElementById("rdbms_id").value;
+var networkng_txt=document.getElementById("networkng_id").value;
+var visual_basic_txt=document.getElementById("visual_basic_id").value;
+var hr_management_txt=document.getElementById("hr_management_id").value;
+var inventory_management_txt=document.getElementById("inventory_management_id").value;
+
+var num=/^[0-9]*$/;
+if(r_no_txt==""){
+	alert('Dont leave empty roll number');
+	return false;
+}
+else if(!r_no_txt.match(num))
+{
+	alert('Use numeric Value for roll number');
+	return false;
+
+}
+else if(numerical_method_txt=="")
+{
+	alert('Dont leave empty Numerical Method');
+	return false;
+}
+else if(!numerical_method_txt.match(num)){
+	alert('Use numeric Value for Numerical Method');
+	return false;
+}
+else if(ds_using_c_txt=="")
+{
+	alert('Dont leave empty DS using C');
+	return false;
+}
+else if(!ds_using_c_txt.match(num)){
+	alert('Use numeric Value DS using C');
+	return false;
+}
+else if(software_engineering_txt==""){
+	alert('Dont leave empty Software Engineering');
+	return false;
+}
+else if(!software_engineering_txt.match(num)){
+	alert('Use numeric Value for Software Engineering');
+	return false;
+}
+else if(rdbms_txt==""){
+	alert('Dont leave empty RDBMS');
+	return false;
+}
+else if(!rdbms_txt.match(num)){
+	alert('Use numeric Value for RDBMS');
+	return false;
+}
+else if(networkng_txt==""){
+	alert('Dont leave empty Networking');
+	return false;
+}
+else if(!networkng_txt.match(num)){
+	alert('Use numeric Value for Networking');
+	return false;
+}
+else if(visual_basic_txt==""){
+	alert('Dont leave empty Visual Basic');
+	return false;
+}
+else if(!visual_basic_txt.match(num)){
+	alert('Use numeric Value for Visual Basic');
+	return false;
+}
+else if(hr_management_txt==""){
+	alert('Dont leave empty HR Management');
+	return false;
+}
+else if(!hr_management_txt.match(num)){
+	alert('Use numeric Value for HR Management');
+	return false;
+}
+else if(inventory_management_txt==""){
+	alert('Dont leave empty Inventory Management');
+	return false;
+}
+else if(!inventory_management_txt.match(num)){
+	alert('Use numeric Value for Inventory Management');
+	return false;
+}
+else
+{
+//end
+var con=new ActiveXObject("ADODB.Connection");
+var rs=new ActiveXObject("ADODB.RecordSet");
+
+con.open("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\\college.mdb");
+			
+var s="select * from bca2";
+
+rs.open(s,con,1,3);
+
+rs.AddNew;
+
+rs.fields(0).value=myfrm.r_no.value;
+rs.fields(1).value=myfrm.numerical_method.value;
+rs.fields(2).value=myfrm.ds_using_c.value;
+rs.fields(3).value=myfrm.software_engineering.value;
+rs.fields(4).value=myfrm.rdbms.value;
+rs.fields(5).value=myfrm.networkng.value;
+rs.fields(6).value=myfrm.visual_basic.value;
+rs.fields(7).value=myfrm.hr_management.value;
+rs.fields(8).value=myfrm.inventory_management.value;
+
+rs.update;
+
+alert("record inserted suucessfully");
+rs.close();
+con.close();
+
+myfrm.r_no.value='';
+myfrm.numerical_method.value='';
+myfrm.ds_using_c.value='';
+myfrm.software_engineering.value='';
+myfrm.rdbms.value='';
+myfrm.networkng.value='';
+myfrm.visual_basic.value='';
+myfrm.hr_management.value='';
+myfrm.inventory_management.value='';
+}
+}
+
+
+function search_record()
+{
+var search_no_txt=document.getElementById("search_r_no_id").value;
+var num=/^[0-9]*$/;
+
+var con=new ActiveXObject("ADODB.Connection");
+var rs=new ActiveXObject("ADODB.RecordSet");
+
+con.open("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\\college.mdb");
+
+if(search_no_txt==""){
+	alert("Please fill It");
+	myfrm.search_r_no.value="";
+}
+else if(!search_no_txt.match(num)){
+	alert("Please Use Numbers for search");
+	myfrm.search_r_no.value="";
+	
+}
+else{			
+var s="select * from bca2 where r_no="+myfrm.search_r_no.value;
+
+rs.open(s,con,1,3);
+if(!rs.eof)
+{
+myfrm.r_no.value=rs.fields(0).value;
+myfrm.numerical_method.value=rs.fields(1).value;
+myfrm.ds_using_c.value=rs.fields(2).value;
+myfrm.software_engineering.value=rs.fields(3).value;
+myfrm.rdbms.value=rs.fields(4).value;
+myfrm.networkng.value=rs.fields(5).value;
+myfrm.visual_basic.value=rs.fields(6).value;
+myfrm.hr_management.value=rs.fields(7).value;
+myfrm.inventory_management.value=rs.fields(8).value;
+
+document.getElementById("myBtn").disabled = true;
+alert("Record Search Sucessfully");
+}
+else{
+alert("Record Not Found");
+myfrm.search_r_no.value='';
+myfrm.r_no.value='';
+myfrm.numerical_method.value='';
+myfrm.ds_using_c.value='';
+myfrm.software_engineering.value='';
+myfrm.rdbms.value='';
+myfrm.networkng.value='';
+myfrm.visual_basic.value='';
+myfrm.hr_management.value='';
+myfrm.inventory_management.value='';
+	}
+rs.close();
+con.close();
+}
+}
+
+function EnableButton(){
+document.getElementById("myBtn").disabled = false;
+}
+</script>
+
+</head>
+<body><div id="content"><div class="inner_copy"></div></div>
+<div id="templatemo_header_wrapper">
+    <div id="templatemo_header">
+    	<div id="site_title">
+            <h1><a href="http://facebook-templates.net/" target="_parent">
+                <img src="images/templatemo_logo.png" alt="Site Title" />
+                <span>Educate People</span>
+            </a></h1>
+        </div>
+        <p></p>
+    
+    </div> <!-- end of templatemo_header -->
+
+</div> <!-- end of templatemo_menu_wrapper -->
+
+<div id="templatemo_menu_wrapper">
+    <div id="templatemo_menu">
+        
+        <ul class="aaaa">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="regis.html" target="_parent" >Student Reg</a></li>
+            <li class="m_e"><a href="bca_first_year.html" target="_parent">First Year</a></li>
+            <li><a href="bca_second_year.html" target="_parent" class="current">Second Year</a></li>
+            <li><a href="bca_third_year.html">Third Year</a></li>
+            <li><a href="login.html">Logout</a></li>
+        </ul>    	
+    
+    </div> <!-- end of templatemo_menu -->
+</div>
+
+<div id="templatemo_content_wrapper">
+
+	<!-- end of sidebar -->
+    
+    <div id="templatemo_content">
+    
+    	<div class="content_box">
+        
+        	<h2>Second Year</h2>
+            
+            <p></p>
+            
+          <div class="cleaner_h20"></div>
+            
+            <div class="image_fl">
+	            <img src="images/templatemo_images01.jpg" alt="image" />
+            </div>
+            
+            <div class="section_w250 float_r">
+			<form name="myfrm" method="get">
+			<table style="margin-bottom:25px;">
+				<tr>
+					<td>Roll Number</td><td><input type="text" name="search_r_no" id="search_r_no_id"></td>
+				</tr>
+				<tr>
+					<td><input type="button" name="search" value="Search" onClick="search_record()" style="float:right;padding-right:10px;"></td>
+					<td><input type="reset" value="Reset" style="float:left;padding-left:10px;" onclick="EnableButton()"></td>
+				</tr>
+			</table>
+				<table cellspacing=0>
+					<tr>
+						<td>Roll Number</td><td><input type="text" name="r_no" id="r_no_id"></td>
+					</tr>
+					<tr>
+						<td>Numerical Method</td><td><input type="text" name="numerical_method" id="numerical_method_id"></td>
+					</tr>
+					<tr>
+						<td>DS Using C</td><td><input type="text" name="ds_using_c" id="ds_using_c_id"></td>
+					</tr>
+					<tr>
+						<td>Software Engineering</td><td><input type="text" name="software_engineering" id="software_engineering_id"></td>
+					</tr>
+					<tr>
+						<td>RDBMS</td><td><input type="text" name="rdbms" id="rdbms_id"></td>
+					</tr>
+					<tr>
+						<td>Networking</td><td><input type="text" name="networkng" id="networkng_id"></td>
+					</tr>
+					<tr>
+						<td>Visual Basic</td><td><input type="text" name="visual_basic" id="visual_basic_id"></td>
+					</tr>
+					<tr>
+						<td>HR Management</td><td><input type="text" name="hr_management" id="hr_management_id"></td>
+					</tr>
+					<tr>
+						<td>Inventory Management</td><td><input type="text" name="inventory_management" id="inventory_management_id"></td>
+					</tr>
+					<tr>
+						<td colspan=2 align="center" style="padding:10px;"><input type="button" id="myBtn" name="button" value="submit" onClick="regis()"></td>
+					</tr>
+				</table>
+            </form>
+            </div>
+        
+        	<div class="cleaner"></div>
+        </div><div class="content_box_bottom"></div>
+        
+        <div class="content_box_bottom"></div>
+    
+    </div> <!-- end of content -->
+    
+    <div class="cleaner"></div>
+
+</div>
+
+<div id="templatemo_footer_wrapper">
+
+    <div id="templatemo_footer">
+    
+        <ul class="footer_menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="regis.html" target="_parent" >Student Reg</a></li>
+            <li class="m_e"><a href="bca_first_year.html" target="_parent">First Year</a></li>
+            <li><a href="bca_second_year.html" target="_parent">Second Year</a></li>
+            <li><a href="bca_third_year.html">Third Year</a></li>
+            <li  class="last_menu"><a href="contact_us.html">Contact</a></li>
+        </ul> 
+                
+                Copyright © 2048 <a href="#">Your Company Name</a> | 
+    </div>
+    
+</div>
+</body>
+</html>

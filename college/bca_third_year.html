@@ -1,0 +1,307 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Education</title>
+<meta name="keywords" content="free css templates, education, school, college, university" />
+<meta name="description" content="Education template is for academic related websites" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+<script language="javascript">
+
+function regis()
+{
+var r_no_txt=document.getElementById("r_no_id").value;
+var net_framework_txt=document.getElementById("net_framework_id").value;
+var internet_programming_txt=document.getElementById("internet_programming_id").value;
+var core_java_txt=document.getElementById("core_java_id").value;
+var e_commerce_txt=document.getElementById("e_commerce_id").value;
+var multimedia_system_txt=document.getElementById("multimedia_system_id").value;
+var advance_java_txt=document.getElementById("advance_java_id").value;
+var principal_of_java_txt=document.getElementById("principal_of_java_id").value;
+
+var num=/^[0-9]*$/;
+
+if(r_no_txt==""){
+	alert('Dont leave empty Roll Number');
+	return false;
+}
+else if(!r_no_txt.match(num))
+{
+	alert('Use numeric Value for Roll Number');
+	return false;
+
+}
+else if(net_framework_txt=="")
+{
+	alert('Dont leave empty net Framework');
+	return false;
+}
+else if(!net_framework_txt.match(num)){
+	alert('Use numeric Value for net Framework');
+	return false;
+}
+else if(internet_programming_txt=="")
+{
+	alert('Dont leave empty Internet Programming');
+	return false;
+}
+else if(!internet_programming_txt.match(num)){
+	alert('Use numeric Value for Internet Programming');
+	return false;
+}
+else if(core_java_txt==""){
+	alert('Dont leave empty Core Java');
+	return false;
+}
+else if(!core_java_txt.match(num)){
+	alert('Use numeric Value for Core Java');
+	return false;
+}
+else if(e_commerce_txt==""){
+	alert('Dont leave empty E Commerce');
+	return false;
+}
+else if(!e_commerce_txt.match(num)){
+	alert('Use numeric Value for E Commerce');
+	return false;
+}
+else if(multimedia_system_txt==""){
+	alert('Dont leave empty Multimedia System');
+	return false;
+}
+else if(!multimedia_system_txt.match(num)){
+	alert('Use numeric Value for Multimedia System');
+	return false;
+}
+else if(advance_java_txt==""){
+	alert('Dont leave empty Advance Java');
+	return false;
+}
+else if(!advance_java_txt.match(num)){
+	alert('Use numeric Value for Advance Java');
+	return false;
+}
+else if(principal_of_java_txt==""){
+	alert('Dont leave empty principal Of Java');
+	return false;
+}
+else if(!principal_of_java_txt.match(num)){
+	alert('Use numeric Value for principal Of Java');
+	return false;
+}
+else{
+var con=new ActiveXObject("ADODB.Connection");
+var rs=new ActiveXObject("ADODB.RecordSet");
+
+con.open("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\\college.mdb");
+			
+var s="select * from bca3";
+
+rs.open(s,con,1,3);
+
+rs.AddNew;
+
+rs.fields(0).value=myfrm.r_no.value;
+rs.fields(1).value=myfrm.net_framework.value;
+rs.fields(2).value=myfrm.internet_programming.value;
+rs.fields(3).value=myfrm.core_java.value;
+rs.fields(4).value=myfrm.e_commerce.value;
+rs.fields(5).value=myfrm.multimedia_system.value;
+rs.fields(6).value=myfrm.advance_java.value;
+rs.fields(7).value=myfrm.principal_of_java.value;
+
+
+myfrm.r_no.value='';
+myfrm.net_framework.value='';
+myfrm.internet_programming.value='';
+myfrm.core_java.value='';
+myfrm.e_commerce.value='';
+myfrm.multimedia_system.value='';
+myfrm.advance_java.value='';
+myfrm.principal_of_java.value='';
+rs.update;
+
+alert("record inserted suucessfully");
+rs.close();
+con.close();
+}
+}
+function search_record()
+{
+var search_no_txt=document.getElementById("search_r_no_id").value;
+var num=/^[0-9]*$/;
+
+var con=new ActiveXObject("ADODB.Connection");
+var rs=new ActiveXObject("ADODB.RecordSet");
+
+con.open("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\\college.mdb");
+if(search_no_txt==""){
+	alert("Please fill It");
+	myfrm.search_r_no.value="";
+}
+else if(!search_no_txt.match(num)){
+	alert("Please Use Numbers for search");
+	myfrm.search_r_no.value="";
+	
+}
+else{		
+var s="select * from bca3 where r_no="+myfrm.search_r_no.value;
+
+rs.open(s,con,1,3);
+if(!rs.eof)
+{
+myfrm.r_no.value=rs.fields(0).value;
+myfrm.net_framework.value=rs.fields(1).value;
+myfrm.internet_programming.value=rs.fields(2).value;
+myfrm.core_java.value=rs.fields(3).value;
+myfrm.e_commerce.value=rs.fields(4).value;
+myfrm.multimedia_system.value=rs.fields(5).value;
+myfrm.advance_java.value=rs.fields(6).value;
+myfrm.principal_of_java.value=rs.fields(7).value;
+
+document.getElementById("myBtn").disabled = true;
+alert("Record Search Sucessfully");
+}
+else{
+alert("Record Not Found");
+myfrm.search_r_no.value='';
+myfrm.r_no.value='';
+myfrm.net_framework.value='';
+myfrm.internet_programming.value='';
+myfrm.core_java.value='';
+myfrm.e_commerce.value='';
+myfrm.multimedia_system.value='';
+myfrm.advance_java.value='';
+myfrm.principal_of_java.value='';
+	}
+rs.close();
+con.close();
+}
+}
+
+function EnableButton(){
+document.getElementById("myBtn").disabled = false;
+}
+</script>
+
+</head>
+<body><div id="content"><div class="inner_copy"></div></div>
+<div id="templatemo_header_wrapper">
+    <div id="templatemo_header">
+    	<div id="site_title">
+            <h1><a href="http://facebook-templates.net/" target="_parent">
+                <img src="images/templatemo_logo.png" alt="Site Title" />
+                <span>Educate People</span>
+            </a></h1>
+        </div>
+        <p></p>
+    
+    </div> <!-- end of templatemo_header -->
+
+</div> <!-- end of templatemo_menu_wrapper -->
+
+<div id="templatemo_menu_wrapper">
+    <div id="templatemo_menu">
+        
+        <ul class="aaaa">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="regis.html" target="_parent" >Student Reg</a></li>
+            <li class="m_e"><a href="bca_first_year.html" target="_parent">First Year</a></li>
+            <li><a href="bca_second_year.html" target="_parent">Second Year</a></li>
+            <li><a href="bca_third_year.html" class="current">Third Year</a></li>
+            <li><a href="login.html">Logout</a></li>
+        </ul>    	
+    
+    </div> <!-- end of templatemo_menu -->
+</div>
+
+<div id="templatemo_content_wrapper">
+
+	<!-- end of sidebar -->
+    
+    <div id="templatemo_content">
+    
+    	<div class="content_box">
+        
+        	<h2>Third Year</h2>
+            
+            <p></p>
+            
+          <div class="cleaner_h20"></div>
+            
+            <div class="image_fl">
+	            <img src="images/templatemo_images01.jpg" alt="image" />
+            </div>
+            
+            <div class="section_w250 float_r">
+			<form name="myfrm" method="get">
+			<table style="margin-bottom:25px;">
+				<tr>
+					<td>Roll Number</td><td><input type="text" name="search_r_no" id="search_r_no_id"></td>
+				</tr>
+				<tr>
+					<td><input type="button" name="search" value="Search" onClick="search_record()" style="float:right;padding-right:10px;"></td>
+					<td><input type="reset" value="Reset" style="float:left;padding-left:10px;" onclick="EnableButton()"></td>
+				</tr>
+			</table>
+				<table cellspacing=0>
+					<tr>
+						<td>Roll Number</td><td><input type="text" name="r_no" id="r_no_id"></td>
+					</tr>
+					<tr>
+						<td>net Framework</td><td><input type="text" name="net_framework" id="net_framework_id"></td>
+					</tr>
+					<tr>
+						<td>Internet Programming</td><td><input type="text" name="internet_programming" id="internet_programming_id"></td>
+					</tr>
+					<tr>
+						<td>Core Java</td><td><input type="text" name="core_java" id="core_java_id"></td>
+					</tr>
+					<tr>
+						<td>E Commerce</td><td><input type="text" name="e_commerce" id="e_commerce_id"></td>
+					</tr>
+					<tr>
+						<td>Multimedia System</td><td><input type="text" name="multimedia_system" id="multimedia_system_id"></td>
+					</tr>
+					<tr>
+						<td>Advance Java</td><td><input type="text" name="advance_java" id="advance_java_id"></td>
+					</tr>
+					<tr>
+						<td>principal Of Java</td><td><input type="text" name="principal_of_java" id="principal_of_java_id"></td>
+					</tr>
+					<tr>
+						<td colspan=2 align="center" style="padding:10px;"><input type="button" id="myBtn" name="button" value="submit" onClick="regis()"></td>
+					</tr>
+				</table>
+            </form>
+            </div>
+        
+        	<div class="cleaner"></div>
+        </div><div class="content_box_bottom"></div>
+        
+        
+    </div> <!-- end of content -->
+    
+    <div class="cleaner"></div>
+
+</div>
+
+<div id="templatemo_footer_wrapper">
+
+    <div id="templatemo_footer">
+    
+        <ul class="footer_menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="regis.html" target="_parent" >Student Reg</a></li>
+            <li class="m_e"><a href="bca_first_year.html" target="_parent">First Year</a></li>
+            <li><a href="bca_second_year.html" target="_parent">Second Year</a></li>
+            <li><a href="bca_third_year.html">Third Year</a></li>
+            <li  class="last_menu"><a href="login.html">Logout</a></li>
+        </ul> 
+                
+                Copyright © 2048 <a href="#">Your Company Name</a> | 
+    </div>
+    
+</div>
+</body>
+</html>
